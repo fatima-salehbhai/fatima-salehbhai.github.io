@@ -37,9 +37,66 @@
   .avatar.egg::after{left:0;right:auto;width:260px;top:auto;bottom:100%;margin:0 0 8px}
   .item.egg:hover{border-top-color:var(--fg)}
   .hint{color:var(--muted);font-size:13px;margin-top:8px;opacity:.6}
+
+  /* ---- background trail: personal moments, hover to open ---- */
+  main{position:relative;z-index:1}
+  .trail{position:fixed;inset:0;z-index:0;pointer-events:none}
+  .trail svg.path{position:absolute;inset:0;width:100%;height:100%}
+  .trail .line{fill:none;stroke:var(--muted);stroke-width:1;stroke-dasharray:2 7;opacity:.35}
+  .node{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;pointer-events:auto;cursor:pointer}
+  .node::before{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--muted);opacity:.55;transition:transform .3s,opacity .3s}
+  .node::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--muted);opacity:.25;animation:pulse 3.2s ease-out infinite}
+  .node:nth-child(odd)::after{animation-delay:1.6s}
+  @keyframes pulse{0%{transform:scale(.4);opacity:.5}100%{transform:scale(1.6);opacity:0}}
+  .node:hover::before,.node.open::before{opacity:1;transform:scale(1.3)}
+  .card{position:absolute;top:50%;width:240px;transform:translateY(-50%) scale(.92);opacity:0;pointer-events:none;background:var(--bg);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.14);overflow:hidden;transition:opacity .25s ease,transform .25s cubic-bezier(.2,.8,.2,1)}
+  .node.right .card{left:24px}.node.left .card{right:24px}
+  .node:hover .card,.node.open .card{opacity:1;transform:translateY(-50%) scale(1);pointer-events:auto}
+  .card svg{display:block;width:100%;height:130px;background:var(--scene,#dfe8f0)}
+  .card .cap{padding:10px 12px 12px;font-size:13px;line-height:1.45}
+  .card .cap b{display:block;font-weight:600;margin-bottom:2px}
+  .card .cap small{color:var(--muted)}
+  @media (max-width:980px){.trail{display:none}}
+  /* scene animations */
+  @keyframes rain{to{transform:translateY(130px)}}
+  @keyframes drift{0%{transform:translate(0,-10px)}100%{transform:translate(18px,140px)}}
+  @keyframes steam{0%{transform:translateY(0);opacity:.7}100%{transform:translateY(-40px) scale(1.4);opacity:0}}
+  @keyframes rise{from{transform:translateY(40px)}to{transform:translateY(0)}}
+  @keyframes flip{0%,40%{transform:scaleX(1)}50%,90%{transform:scaleX(-1)}}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+  .rain line{stroke:#7a9cc0;stroke-width:1.2;animation:rain 1.1s linear infinite}
+  .snow circle{fill:#fff;animation:drift 5s linear infinite}
+  .steam path{fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;animation:steam 2.4s ease-out infinite}
+  .sun{animation:rise 2s ease-out both}
+  .page{transform-origin:100px 60px;animation:flip 3s ease-in-out infinite}
+  .boat{animation:bob 2.2s ease-in-out infinite}
 </style>
 </head>
 <body>
+
+<div class="trail" aria-hidden="true">
+  <svg class="path" viewBox="0 0 100 100" preserveAspectRatio="none"><path class="line" vector-effect="non-scaling-stroke" d="M9 12 C 9 30, 88 32, 88 45 S 10 62, 10 76 S 90 88, 90 96"/></svg>
+
+  <div class="node right" style="left:9%;top:12%"><div class="card" style="--scene:#5d6f86">
+    <svg viewBox="0 0 240 130"><rect width="240" height="130" fill="#5d6f86"/><g fill="#3f4d60"><rect x="20" y="70" width="30" height="60"/><rect x="60" y="55" width="22" height="75"/><rect x="95" y="80" width="40" height="50"/><rect x="150" y="60" width="26" height="70"/><rect x="190" y="75" width="34" height="55"/></g><g class="rain"><line x1="30" y1="-20" x2="26" y2="-4" style="animation-delay:0s"/><line x1="70" y1="-40" x2="66" y2="-24" style="animation-delay:.3s"/><line x1="110" y1="-10" x2="106" y2="6" style="animation-delay:.6s"/><line x1="150" y1="-30" x2="146" y2="-14" style="animation-delay:.15s"/><line x1="190" y1="-50" x2="186" y2="-34" style="animation-delay:.45s"/><line x1="220" y1="-15" x2="216" y2="1" style="animation-delay:.8s"/><line x1="50" y1="-60" x2="46" y2="-44" style="animation-delay:.9s"/><line x1="130" y1="-70" x2="126" y2="-54" style="animation-delay:.5s"/></g></svg>
+    <div class="cap"><b>Mumbai, first monsoon I remember</b>Paper boats in the lane outside our building. Still my favorite weather. <small>(placeholder)</small></div></div></div>
+
+  <div class="node left" style="left:88%;top:45%"><div class="card" style="--scene:#243247">
+    <svg viewBox="0 0 240 130"><rect width="240" height="130" fill="#243247"/><path d="M0 130 L60 50 L100 95 L140 35 L190 90 L240 60 L240 130Z" fill="#3d5473"/><path d="M60 50 L75 70 L45 70Z M140 35 L158 60 L122 60Z" fill="#e8eef5"/><g class="snow"><circle cx="30" cy="0" r="2" style="animation-delay:0s"/><circle cx="90" cy="0" r="1.5" style="animation-delay:1.2s"/><circle cx="150" cy="0" r="2" style="animation-delay:2.4s"/><circle cx="200" cy="0" r="1.5" style="animation-delay:.6s"/><circle cx="120" cy="0" r="1.2" style="animation-delay:3.5s"/><circle cx="60" cy="0" r="1.8" style="animation-delay:4.2s"/></g></svg>
+    <div class="cap"><b>Zürich, fall 2018</b>Learned to ski at 21, mostly by falling. Made peace with mountains. <small>(placeholder)</small></div></div></div>
+
+  <div class="node right" style="left:10%;top:76%"><div class="card" style="--scene:#6b4a3a">
+    <svg viewBox="0 0 240 130"><rect width="240" height="130" fill="#6b4a3a"/><rect x="0" y="100" width="240" height="30" fill="#4d3428"/><rect x="85" y="68" width="70" height="36" rx="4" fill="#2e2622"/><rect x="80" y="62" width="80" height="8" rx="3" fill="#3a302a"/><g class="steam"><path d="M105 60 q-6 -10 0 -20" style="animation-delay:0s"/><path d="M120 60 q6 -10 0 -20" style="animation-delay:.8s"/><path d="M135 60 q-6 -10 0 -20" style="animation-delay:1.6s"/></g></svg>
+    <div class="cap"><b>Pittsburgh winters</b>Learned to actually cook here. One pot, one window, a lot of snow. <small>(placeholder)</small></div></div></div>
+
+  <div class="node left" style="left:90%;top:96%;top:calc(96% - 20px)"><div class="card" style="--scene:#f0a868">
+    <svg viewBox="0 0 240 130"><defs><clipPath id="hz"><rect width="240" height="95"/></clipPath></defs><rect width="240" height="130" fill="#f6c98b"/><circle class="sun" cx="120" cy="95" r="34" fill="#ff8a4c" clip-path="url(#hz)"/><path d="M0 95 L240 95 L240 130 L0 130Z" fill="#7a5c3d"/><path d="M0 100 Q60 85 120 100 T240 100" fill="none" stroke="#5c4530" stroke-width="2"/></svg>
+    <div class="cap"><b>Austin, 6 a.m.</b>Started running trails before work. Kept it up. <small>(placeholder)</small></div></div></div>
+
+  <div class="node right" style="left:52%;top:30%;left:calc(50% + 380px)"><div class="card" style="--scene:#e9e2d3">
+    <svg viewBox="0 0 240 130"><rect width="240" height="130" fill="#e9e2d3"/><rect x="60" y="30" width="120" height="80" rx="3" fill="#fbf8f2" stroke="#c9bfae"/><line x1="120" y1="30" x2="120" y2="110" stroke="#c9bfae"/><g class="page"><rect x="62" y="32" width="56" height="76" fill="#fff" stroke="#d6cdbd"/></g><g stroke="#b9ae9c" stroke-width="1.5"><line x1="130" y1="50" x2="170" y2="50"/><line x1="130" y1="62" x2="165" y2="62"/><line x1="130" y1="74" x2="172" y2="74"/></g></svg>
+    <div class="cap"><b>One novel a month</b>Sci-fi, mostly. Currently something with a lot of moons in it. <small>(placeholder)</small></div></div></div>
+</div>
 <main>
   <img class="avatar egg" src="photo.jpg" alt="Fatima Salehbhai" tabindex="0" data-egg="Airplane selfie. Straightened, cropped, and background-softened with about forty lines of Python." onerror="this.style.visibility='hidden'">
   <h1>Fatima Salehbhai</h1>
@@ -67,14 +124,14 @@
 </main>
 <script data-goatcounter="https://fatimasalehbhai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
-  document.querySelectorAll('.egg').forEach(function(el){
+  document.querySelectorAll('.egg,.node').forEach(function(el){
     el.addEventListener('click',function(e){
       var open=el.classList.contains('open');
-      document.querySelectorAll('.egg.open').forEach(function(o){o.classList.remove('open')});
+      document.querySelectorAll('.egg.open,.node.open').forEach(function(o){o.classList.remove('open')});
       if(!open) el.classList.add('open');
     });
   });
-  document.addEventListener('click',function(e){ if(!e.target.closest('.egg')) document.querySelectorAll('.egg.open').forEach(function(o){o.classList.remove('open')}); });
+  document.addEventListener('click',function(e){ if(!e.target.closest('.egg,.node')) document.querySelectorAll('.egg.open,.node.open').forEach(function(o){o.classList.remove('open')}); });
 </script>
 </body>
 </html>
