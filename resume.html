@@ -6,15 +6,16 @@
 <meta name="robots" content="noindex">
 <title>Resume · Fatima Salehbhai</title>
 <style>
-  :root{--bg:#fff;--fg:#1a1a1a;--muted:#6b6b6b;--line:#e6e6e6}
-  @media (prefers-color-scheme:dark){:root{--bg:#111;--fg:#eaeaea;--muted:#9a9a9a;--line:#2a2a2a}}
-  body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  :root{--bg:#f4e9dc;--fg:#2b1a12;--muted:#8a6a55;--line:#e3d0bc;--link:#2b1a12;--accent:#a4622f;--card:#fbf4ec}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="boba"]){--bg:#2a1a12;--fg:#f3e4d2;--muted:#c2a58a;--line:#4a3325;--link:#f3e4d2;--accent:#e0a263;--card:#34221a}}
+  :root[data-theme="chai"]{--bg:#2a1a12;--fg:#f3e4d2;--muted:#c2a58a;--line:#4a3325;--link:#f3e4d2;--accent:#e0a263;--card:#34221a}
+  body{margin:0;background:var(--bg);transition:background .4s,color .4s;color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
   main{max-width:640px;margin:0 auto;padding:72px 24px}
   h1{font-size:22px;font-weight:600;margin:0 0 8px}
   p{color:var(--muted);margin:0 0 20px}
   form{display:flex;gap:8px;flex-wrap:wrap}
   input{flex:1;min-width:200px;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--fg)}
-  button{font:inherit;padding:10px 16px;border:1px solid var(--fg);border-radius:8px;background:var(--fg);color:var(--bg);cursor:pointer}
+  button{font:inherit;padding:10px 16px;border:1px solid var(--accent);border-radius:8px;background:var(--accent);color:var(--bg);cursor:pointer}
   .err{color:#c0392b;margin-top:12px;min-height:1.5em}
   a{color:var(--fg)}
   iframe{width:100%;height:85vh;border:1px solid var(--line);border-radius:8px;margin-top:20px}
@@ -32,6 +33,7 @@
   <div id="out"></div>
 </main>
 <script>
+try{ var s=localStorage.getItem('brew'); if(s) document.documentElement.dataset.theme=s; }catch(e){}
 const enc = fetch('resume.enc').then(r => r.arrayBuffer());
 document.getElementById('f').addEventListener('submit', async e => {
   e.preventDefault();

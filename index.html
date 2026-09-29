@@ -6,19 +6,20 @@
 <title>Fatima Salehbhai</title>
 <meta name="description" content="Fatima Salehbhai — product manager building AI agent and developer platforms.">
 <style>
-  :root{--bg:#fff;--fg:#1a1a1a;--muted:#6b6b6b;--line:#e6e6e6;--link:#1a1a1a}
-  @media (prefers-color-scheme:dark){:root{--bg:#111;--fg:#eaeaea;--muted:#9a9a9a;--line:#2a2a2a;--link:#eaeaea}}
+  :root{--bg:#f4e9dc;--fg:#2b1a12;--muted:#8a6a55;--line:#e3d0bc;--link:#2b1a12;--accent:#a4622f;--card:#fbf4ec}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="boba"]){--bg:#2a1a12;--fg:#f3e4d2;--muted:#c2a58a;--line:#4a3325;--link:#f3e4d2;--accent:#e0a263;--card:#34221a}}
+  :root[data-theme="chai"]{--bg:#2a1a12;--fg:#f3e4d2;--muted:#c2a58a;--line:#4a3325;--link:#f3e4d2;--accent:#e0a263;--card:#34221a}
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  body{margin:0;background:var(--bg);transition:background .4s,color .4s;color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
   main{max-width:640px;margin:0 auto;padding:72px 24px 96px}
   .avatar{width:120px;height:120px;border-radius:50%;object-fit:cover;display:block;background:var(--line)}
   h1{font-size:28px;font-weight:600;margin:24px 0 8px;letter-spacing:-.01em}
   .links{display:flex;gap:14px;margin:0 0 24px;padding:0;list-style:none}
   .links a{color:var(--muted);display:inline-flex;align-items:center}
-  .links a:hover{color:var(--fg)}
+  .links a:hover{color:var(--accent)}
   .links svg{width:20px;height:20px;fill:currentColor}
   p{margin:0 0 16px}
-  h2{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:40px 0 12px}
+  h2{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:40px 0 12px}
   .item{display:grid;grid-template-columns:1fr auto;gap:8px 16px;padding:12px 0;border-top:1px solid var(--line)}
   .item:last-child{border-bottom:1px solid var(--line)}
   .item .title{font-weight:500}
@@ -32,20 +33,22 @@
 
   /* easter eggs: hover (or tap) any line to reveal a tidbit */
   .egg{position:relative;cursor:help;outline:none}
-  .egg::after{content:attr(data-egg);position:absolute;left:0;right:0;top:100%;z-index:2;margin-top:6px;padding:10px 12px;font-size:13.5px;line-height:1.5;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,.12);opacity:0;transform:translateY(-4px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}
+  .egg::after{content:attr(data-egg);position:absolute;left:0;right:0;top:100%;z-index:2;margin-top:6px;padding:10px 12px;font-size:13.5px;line-height:1.5;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,.12);opacity:0;transform:translateY(-4px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}
   .egg:hover::after,.egg:focus-visible::after,.egg.open::after{opacity:1;transform:translateY(0)}
   .avatar.egg::after{left:0;right:auto;width:260px;top:auto;bottom:100%;margin:0 0 8px}
-  .item.egg:hover{border-top-color:var(--fg)}
+  .item.egg:hover{border-top-color:var(--accent)}
   .hint{color:var(--muted);font-size:13px;margin-top:8px;opacity:.6}
 
   /* ---- background trail: personal moments, hover to open ---- */
   main{position:relative;z-index:1}
   .trail{position:fixed;inset:0;z-index:0;pointer-events:none}
   .trail svg.path{position:absolute;inset:0;width:100%;height:100%}
-  .node{position:absolute;width:90px;height:90px;margin:-45px 0 0 -45px;pointer-events:auto;cursor:pointer;border-radius:50%}
-  .card{position:absolute;top:50%;width:240px;transform:translateY(-50%) scale(.92);opacity:0;pointer-events:none;background:var(--bg);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.14);overflow:hidden;transition:opacity .25s ease,transform .25s cubic-bezier(.2,.8,.2,1)}
+  .node{position:absolute;width:150px;height:150px;margin:-75px 0 0 -75px;pointer-events:auto;cursor:pointer;border-radius:50%;--near:0}
+  .node::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,var(--accent) 0,transparent 60%);opacity:calc(var(--near) * .22);transition:opacity .25s;pointer-events:none}
+  .node:hover::before,.node.open::before{opacity:0}
+  .card{position:absolute;top:50%;width:240px;--dy:0px;transform:translateY(calc(-50% + var(--dy))) scale(.92);opacity:0;pointer-events:none;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 40px rgba(60,35,20,.18);overflow:hidden;transition:opacity .25s ease,transform .25s cubic-bezier(.2,.8,.2,1)}
   .node.right .card{left:24px}.node.left .card{right:24px}
-  .node:hover .card,.node.open .card{opacity:1;transform:translateY(-50%) scale(1);pointer-events:auto}
+  .node:hover .card,.node.open .card{opacity:1;transform:translateY(calc(-50% + var(--dy))) scale(1);pointer-events:auto}
   .card svg{display:block;width:100%;height:130px;background:var(--scene,#dfe8f0)}
   .card .cap{padding:10px 12px 12px;font-size:13px;line-height:1.45}
   .card .cap b{display:block;font-weight:600;margin-bottom:2px}
@@ -64,10 +67,15 @@
   .sun{animation:rise 2s ease-out both}
   .page{transform-origin:100px 60px;animation:flip 3s ease-in-out infinite}
   .boat{animation:bob 2.2s ease-in-out infinite}
+  /* chai / boba toggle */
+  .brew{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));right:16px;z-index:5;display:flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--card);font-size:12.5px}
+  .brew button{font:inherit;border:0;background:transparent;color:var(--muted);padding:5px 11px;border-radius:999px;cursor:pointer;transition:background .25s,color .25s}
+  .brew button[aria-pressed="true"]{background:var(--accent);color:var(--card)}
 </style>
 </head>
 <body>
 
+<div class="brew" role="group" aria-label="Theme"><button type="button" data-brew="chai">chai</button><button type="button" data-brew="boba">boba</button></div>
 <div class="trail" aria-hidden="true">
 
   <div class="node right" style="left:9%;top:12%"><div class="card" style="--scene:#5d6f86">
@@ -117,6 +125,17 @@
 </main>
 <script data-goatcounter="https://fatimasalehbhai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
+  // chai (dark) / boba (light); defaults to the visitor's system setting
+  (function(){
+    var root=document.documentElement, saved=null;
+    try{ saved=localStorage.getItem('brew'); }catch(e){}
+    function current(){ return root.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches?'chai':'boba'); }
+    function paint(){ document.querySelectorAll('[data-brew]').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.brew===current()); }); }
+    if(saved) root.dataset.theme=saved;
+    document.querySelectorAll('[data-brew]').forEach(function(b){ b.addEventListener('click',function(){
+      root.dataset.theme=b.dataset.brew; try{ localStorage.setItem('brew',b.dataset.brew); }catch(e){} paint(); }); });
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change',paint); paint();
+  })();
   document.querySelectorAll('.egg,.node').forEach(function(el){
     el.addEventListener('click',function(e){
       var open=el.classList.contains('open');
@@ -125,6 +144,21 @@
     });
   });
   document.addEventListener('click',function(e){ if(!e.target.closest('.egg,.node')) document.querySelectorAll('.egg.open,.node.open').forEach(function(o){o.classList.remove('open')}); });
+  // proximity shimmer: hotspots stay invisible until the cursor gets close
+  (function(){
+    var nodes=[].slice.call(document.querySelectorAll('.node')), raf=0, mx=-1e4, my=-1e4;
+    function tick(){ raf=0; nodes.forEach(function(n){
+      var b=n.getBoundingClientRect(), dx=mx-(b.left+b.width/2), dy=my-(b.top+b.height/2);
+      var d=Math.sqrt(dx*dx+dy*dy), near=Math.max(0,Math.min(1,(260-d)/180));
+      n.style.setProperty('--near',near.toFixed(2)); }); }
+    // keep cards fully on screen
+    nodes.forEach(function(n){ var c=n.querySelector('.card');
+      function fit(){ c.style.setProperty('--dy','0px'); var r=n.getBoundingClientRect(), h=c.offsetHeight, top=r.top+r.height/2-h/2, pad=16, dy=0;
+        if(top<pad) dy=pad-top; else if(top+h>innerHeight-pad) dy=innerHeight-pad-(top+h);
+        c.style.setProperty('--dy',dy+'px'); }
+      n.addEventListener('mouseenter',fit); n.addEventListener('click',fit); });
+    document.addEventListener('mousemove',function(e){ mx=e.clientX; my=e.clientY; if(!raf) raf=requestAnimationFrame(tick); });
+  })();
 </script>
 </body>
 </html>
