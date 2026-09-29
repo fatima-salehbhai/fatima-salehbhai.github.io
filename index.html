@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fatima Salehbhai</title>
+<meta name="description" content="Fatima Salehbhai — product manager building AI agent and developer platforms.">
+<style>
+  :root{--bg:#fff;--fg:#1a1a1a;--muted:#6b6b6b;--line:#e6e6e6;--link:#1a1a1a}
+  @media (prefers-color-scheme:dark){:root{--bg:#111;--fg:#eaeaea;--muted:#9a9a9a;--line:#2a2a2a;--link:#eaeaea}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  main{max-width:640px;margin:0 auto;padding:72px 24px 96px}
+  .avatar{width:120px;height:120px;border-radius:50%;object-fit:cover;display:block;background:var(--line)}
+  h1{font-size:28px;font-weight:600;margin:24px 0 8px;letter-spacing:-.01em}
+  .links{display:flex;gap:14px;margin:0 0 24px;padding:0;list-style:none}
+  .links a{color:var(--muted);display:inline-flex;align-items:center}
+  .links a:hover{color:var(--fg)}
+  .links svg{width:20px;height:20px;fill:currentColor}
+  p{margin:0 0 16px}
+  h2{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:40px 0 12px}
+  .item{display:grid;grid-template-columns:1fr auto;gap:8px 16px;padding:12px 0;border-top:1px solid var(--line)}
+  .item:last-child{border-bottom:1px solid var(--line)}
+  .item .title{font-weight:500}
+  .item .org,.item .date{color:var(--muted)}
+  .item .date{white-space:nowrap;font-variant-numeric:tabular-nums}
+  .item .desc{grid-column:1/-1;color:var(--muted);font-size:15px;margin:0}
+  footer{margin-top:48px;color:var(--muted);font-size:15px}
+  a{color:var(--link);text-decoration:none}
+  a:hover{text-decoration:underline}
+  @media (max-width:480px){.item{grid-template-columns:1fr}.item .date{white-space:normal}}
+
+  /* easter eggs: hover (or tap) any line to reveal a tidbit */
+  .egg{position:relative;cursor:help;outline:none}
+  .egg::after{content:attr(data-egg);position:absolute;left:0;right:0;top:100%;z-index:2;margin-top:6px;padding:10px 12px;font-size:13.5px;line-height:1.5;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,.12);opacity:0;transform:translateY(-4px);pointer-events:none;transition:opacity .18s ease,transform .18s ease}
+  .egg:hover::after,.egg:focus-visible::after,.egg.open::after{opacity:1;transform:translateY(0)}
+  .avatar.egg::after{left:0;right:auto;width:260px;top:auto;bottom:100%;margin:0 0 8px}
+  .item.egg:hover{border-top-color:var(--fg)}
+  .hint{color:var(--muted);font-size:13px;margin-top:8px;opacity:.6}
+</style>
+</head>
+<body>
+<main>
+  <img class="avatar egg" src="photo.jpg" alt="Fatima Salehbhai" tabindex="0" data-egg="Airplane selfie. Straightened, cropped, and background-softened with about forty lines of Python." onerror="this.style.visibility='hidden'">
+  <h1>Fatima Salehbhai</h1>
+
+  <ul class="links">
+    <li><a href="https://www.linkedin.com/in/fatima-saleh" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a></li>
+    <li><a href="https://github.com/fatima-salehbhai" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a></li>
+    <li><a href="mailto:fatima.salehbhai@gmail.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm1 3.3V18h18V7.3l-9 5.6-9-5.6zM3.6 6l8.4 5.2L20.4 6H3.6z"/></svg></a></li>
+    <li><a href="resume.html" title="Resume" aria-label="Resume"><svg viewBox="0 0 24 24"><path d="M6 2h8l6 6v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zm7 1.5V9h5.5L13 3.5zM8 12h8v1.5H8V12zm0 3.5h8V17H8v-1.5zM8 19h5v1.5H8V19z"/></svg></a></li>
+  </ul>
+
+  <p>Working at the intersection of product, engineering, and machine learning to build developer platforms and vision systems that hold up in the real world.</p>
+
+  <h2>Experience</h2>
+  <div class="item egg" tabindex="0" data-egg="Put my own contact details in the product playground, then took 200 customer calls in under two months. Grew signups to 100k and committed ARR from zero to $10M."><span class="title">Lead Product Manager, AI Agents <span class="org">· Landing AI</span></span><span class="date">2024 – Present</span><p class="desc">Product-market fit discovery. Building foundation layers for unstructured data intelligence.</p></div>
+  <div class="item egg" tabindex="0" data-egg="My manager left in month three. Led 11 engineers, 4 MLEs, and a designer directly for the next 15 months. Models ran on lines that built 1M+ cars across the US and Germany. Cut labeling time per model from ten hours to one."><span class="title">Sr. Product Manager, Visual AI Platform <span class="org">· Tesla</span></span><span class="date">2023 – 2024</span><p class="desc">Built the internal vision AI platform for model training and deployment.</p></div>
+  <div class="item egg" tabindex="0" data-egg="A summer internship. The debris detection model shipped in SharkNinja&#39;s production robots in 2023 at 85%+ accuracy on real floors."><span class="title">Product Manager, Perception <span class="org">· SharkNinja Robotics</span></span><span class="date">2022</span><p class="desc">Owned 0 to 1 computer vision debris detection for premium robot vacuums.</p></div>
+  <div class="item egg" tabindex="0" data-egg="A/B test frameworks for banks in Dubai and the UAE, and forecasting for a fintech&#39;s APAC expansion in Python, PySpark, and Hive."><span class="title">Data Science Consultant <span class="org">· Mastercard Advisors</span></span><span class="date">2020 – 2021</span><p class="desc">Experimentation, ML modeling, and forecasting for banking and fintech clients.</p></div>
+
+  <h2>Education</h2>
+  <div class="item egg" tabindex="0" data-egg="K.C. Mahindra Scholar. Represented CMU at the Grace Hopper Celebration. Split coursework between the School of Computer Science and Tepper."><span class="title">Carnegie Mellon University <span class="org">· MS, Integrated Product Development</span></span><span class="date">2022</span></div>
+  <div class="item egg" tabindex="0" data-egg="Top 1% rank among 150k students. KVPY Fellow. Spent Fall 2018 on exchange at ETH Z&#252;rich."><span class="title">IIT Bombay <span class="org">· M.Tech + B.Tech, Engineering</span></span><span class="date">2020</span></div>
+
+  <footer>fatima.salehbhai@gmail.com<div class="hint">Some lines have more to say. Hover around.</div></footer>
+</main>
+<script data-goatcounter="https://fatimasalehbhai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+  document.querySelectorAll('.egg').forEach(function(el){
+    el.addEventListener('click',function(e){
+      var open=el.classList.contains('open');
+      document.querySelectorAll('.egg.open').forEach(function(o){o.classList.remove('open')});
+      if(!open) el.classList.add('open');
+    });
+  });
+  document.addEventListener('click',function(e){ if(!e.target.closest('.egg')) document.querySelectorAll('.egg.open').forEach(function(o){o.classList.remove('open')}); });
+</script>
+</body>
+</html>
