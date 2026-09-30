@@ -130,28 +130,11 @@
 </main>
 <script data-goatcounter="https://fatimasalehbhai.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
-  // drink sounds, synthesized with Web Audio (no files). Boba: straw slurp + pearl bloops. Chai: pour + glass clink.
+  // drink sounds: real public-domain recordings (see sounds/CREDITS.md). Boba: ice rattle + sip. Chai: pour + clink.
   (function(){
-    var AC=window.AudioContext||window.webkitAudioContext; if(!AC) return; var ctx=null;
-    function noise(c,dur){ var b=c.createBuffer(1,Math.ceil(c.sampleRate*dur),c.sampleRate), d=b.getChannelData(0); for(var i=0;i<d.length;i++) d[i]=Math.random()*2-1; var s=c.createBufferSource(); s.buffer=b; return s; }
-    function env(c,g,t,a,peak,rel){ g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(peak,t+a); g.gain.exponentialRampToValueAtTime(0.0001,t+a+rel); }
-    function bloop(c,out,t,f){ var o=c.createOscillator(), g=c.createGain(); o.type='sine'; o.frequency.setValueAtTime(f,t); o.frequency.exponentialRampToValueAtTime(f*0.45,t+0.09); env(c,g,t,0.006,0.5,0.11); o.connect(g).connect(out); o.start(t); o.stop(t+0.14); }
-    function boba(c,out,t){
-      var n=noise(c,0.34), bp=c.createBiquadFilter(), g=c.createGain(); bp.type='bandpass'; bp.Q.value=4;
-      bp.frequency.setValueAtTime(700,t); bp.frequency.exponentialRampToValueAtTime(1800,t+0.3);
-      g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.35,t+0.05); g.gain.setValueAtTime(0.3,t+0.22); g.gain.exponentialRampToValueAtTime(0.0001,t+0.33);
-      n.connect(bp).connect(g).connect(out); n.start(t); n.stop(t+0.34);
-      [0.36,0.47,0.55,0.66].forEach(function(dt,i){ bloop(c,out,t+dt,[520,660,470,600][i]); });
-    }
-    function chai(c,out,t){
-      var n=noise(c,0.5), lp=c.createBiquadFilter(), bp=c.createBiquadFilter(), g=c.createGain(); lp.type='lowpass'; lp.frequency.value=2200; bp.type='bandpass'; bp.Q.value=1.2;
-      bp.frequency.setValueAtTime(500,t); bp.frequency.exponentialRampToValueAtTime(1400,t+0.45);
-      g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(0.28,t+0.06); g.gain.setValueAtTime(0.24,t+0.36); g.gain.exponentialRampToValueAtTime(0.0001,t+0.5);
-      n.connect(lp).connect(bp).connect(g).connect(out); n.start(t); n.stop(t+0.5);
-      var tc=t+0.56; [[2350,0.22,0.9],[3790,0.12,0.6],[5620,0.07,0.35]].forEach(function(p){ var o=c.createOscillator(), og=c.createGain(); o.type='sine'; o.frequency.value=p[0]; env(c,og,tc,0.003,p[1],p[2]); o.connect(og).connect(out); o.start(tc); o.stop(tc+p[2]+0.05); });
-    }
-    window.brewRender=function(c,kind,t){ var out=c.createGain(); out.gain.value=0.35; out.connect(c.destination); (kind==='boba'?boba:chai)(c,out,t||0); };
-    window.brewSound=function(kind){ try{ ctx=ctx||new AC(); if(ctx.state==='suspended') ctx.resume(); brewRender(ctx,kind,ctx.currentTime+0.02); }catch(e){} };
+    var clips={};
+    ['boba','chai'].forEach(function(k){ try{ var a=new Audio('sounds/'+k+'.mp3'); a.preload='auto'; a.volume=0.6; clips[k]=a; }catch(e){} });
+    window.brewSound=function(kind){ var a=clips[kind]; if(!a) return; try{ a.currentTime=0; var p=a.play(); if(p&&p.catch) p.catch(function(){}); }catch(e){} };
   })();
   // chai (dark) / boba (light); defaults to the visitor's system setting
   (function(){
