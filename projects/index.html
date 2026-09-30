@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Projects · Fatima Salehbhai</title><link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../site.css"><script>try{var s=localStorage.getItem("brew");if(s)document.documentElement.dataset.theme=s}catch(e){}</script></head>
+<body><main>
+<div class="crumb"><a href="../">Fatima Salehbhai</a> / projects</div>
+<h1>Projects</h1>
+<p class="lede">Things I build for fun: robots, experiments, and whatever I can't stop thinking about.</p>
+<div id="out"></div>
+</main>
+<script>
+const GROUPS=[['building','Building now'],['done','Made'],['old','From the archive']];
+fetch('projects.json',{cache:'no-cache'}).then(r=>r.json()).then(ps=>{
+  document.getElementById('out').innerHTML=GROUPS.map(([k,label])=>{const g=ps.filter(p=>p.status===k); if(!g.length) return '';
+    return '<h2>'+label+'</h2>'+g.map(p=>{const tag=p.link?'a':'div'; return '<'+tag+' class="row"'+(p.link?' href="'+p.link+'"':'')+'><span class="t">'+p.title+'</span><span class="d">'+p.year+'</span><span class="s">'+p.blurb+'<br>'+(p.tags||[]).map(t=>'<span class="tag">'+t+'</span>').join('')+'</span></'+tag+'>';}).join('');}).join('');
+});
+</script></body></html>

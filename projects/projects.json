@@ -1,0 +1,5 @@
+[
+  {"title":"The Handmade Web","year":"2026","status":"building","tags":["archive","web"],"blurb":"A portal for discovering weird, wonderful corners of the internet made by people, not machines.","link":"../archive/"},
+  {"title":"This website","year":"2026","status":"done","tags":["web"],"blurb":"Chai and boba themes, a drink that makes sounds, and a password-protected resume.","link":"https://github.com/fatima-salehbhai/fatima-salehbhai.github.io"},
+  {"title":"Ornithopter","year":"IIT Bombay","status":"old","tags":["robots"],"blurb":"A flapping-wing robot from my undergrad days. Photos and the story are being dug up."}
+]

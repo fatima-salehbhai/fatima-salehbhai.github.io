@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Writing · Fatima Salehbhai</title><link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../site.css"><script>try{var s=localStorage.getItem("brew");if(s)document.documentElement.dataset.theme=s}catch(e){}</script>
+<style>article h1{margin-bottom:4px}.meta{color:var(--muted);font-size:14px;margin-bottom:32px}article img{max-width:100%;border-radius:8px}article blockquote{margin:0;padding-left:16px;border-left:2px solid var(--line);color:var(--muted)}article pre{overflow-x:auto;background:var(--card);padding:12px;border-radius:8px}</style>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script></head>
+<body><main>
+<div class="crumb"><a href="../">Fatima Salehbhai</a> / <a href="./">writing</a></div>
+<article id="post"></article>
+</main>
+<script>
+const slug=new URLSearchParams(location.search).get('p')||'';
+Promise.all([fetch('posts.json',{cache:'no-cache'}).then(r=>r.json()),fetch('posts/'+encodeURIComponent(slug)+'.md',{cache:'no-cache'}).then(r=>r.ok?r.text():Promise.reject())])
+ .then(([posts,md])=>{const p=posts.find(x=>x.slug===slug)||{title:slug,date:''};document.title=p.title+' · Fatima Salehbhai';
+   document.getElementById('post').innerHTML='<h1>'+p.title+'</h1><div class="meta">'+p.date+'</div>'+marked.parse(md);})
+ .catch(()=>{document.getElementById('post').innerHTML='<p class="empty">That post isn\'t here. <a href="./">Back to writing</a>.</p>';});
+</script></body></html>
